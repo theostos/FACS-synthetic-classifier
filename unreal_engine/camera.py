@@ -47,8 +47,8 @@ class Camera:
         focus_distance_section.set_end_frame_bounded(0)
         self.focus_distance_section, self.binding = focus_distance_section, spawnable_camera_binding
 
-    def add_key_transform(self, loc, rot, t):
-        utils.add_key_transform(self.binding, loc, rot, t)
+    def add_key_transform(self, t, loc, rot):
+        utils.add_key_transform(self.binding, t, loc, rot)
 
     def add_key_random(self, t, dev_theta=pi/15, dev_phi=pi/15, distance=280., offset=[0., 0., 0.]):
         theta = random.uniform(pi/2 - dev_theta, pi/2 + dev_theta)
@@ -59,10 +59,11 @@ class Camera:
             loc[k] += offset[k]
         pitch = phi * 180 / pi - 90
         yaw = theta * 180 / pi - 180
-        self.add_key_transform(loc, [0., pitch, yaw], t)
+        self.add_key_transform(t, loc, [0., pitch, yaw])
+        self.add_key_focus(t, 34 + random.uniform(-1, 1))
         return ({"location": loc, "rotation": [0., pitch, yaw]})
 
-    def add_key_focus(self, focus_distance, t):
+    def add_key_focus(self, t, focus_distance):
         frame = unreal.FrameNumber(value=t)
         focus_distance_channel = self.focus_distance_section.get_all_channels()[0]
         focus_distance_channel.add_key(frame, focus_distance)

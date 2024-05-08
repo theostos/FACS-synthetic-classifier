@@ -62,7 +62,7 @@ class MetaHuman:
             if "GroomComponent" in c.get_full_name():
                 c.destroy_component(c)
 
-    def add_key(self, key, t):
+    def add_key(self, t, key):
         track = self.binding_face.get_tracks()[0]
         frame = unreal.FrameNumber(value=t)
         for channel in track.get_sections()[0].get_all_channels():

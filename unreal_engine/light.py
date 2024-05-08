@@ -31,9 +31,9 @@ class PointLight:
         self.channel_b = self.color_section.get_channel('Color.B')
         self.channel_a = self.color_section.get_channel('Color.A')
 
-    def add_key_transform(self, loc, rot, t):
+    def add_key_transform(self, t, loc, rot):
         assert self.binding, "Not in a level sequencer"
-        utils.add_key_transform(self.binding, loc, rot, t)
+        utils.add_key_transform(self.binding, t, loc, rot)
 
     def add_key_random(self, t, distance=None, offset=[0., 0., 0.]):
         theta = random.uniform(-pi/3 + pi/2, pi/3 + pi/2)
@@ -43,7 +43,7 @@ class PointLight:
         loc = utils.spherical_coordinates(distance, phi, theta)
         for k in range(3):
             loc[k] += offset[k]
-        self.add_key_transform(loc, [0., 0., 0.], t)
+        self.add_key_transform(t, loc, [0., 0., 0.])
 
         frame = unreal.FrameNumber(value=t)
         self.channel_a.add_key(frame, 1)

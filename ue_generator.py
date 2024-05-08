@@ -23,16 +23,25 @@ from unreal_engine.level import LevelSequencer
 from unreal_engine.metahuman import MetaHuman
 from unreal_engine.utils import MetaHumanAssets, linear_interp_keys
 from unreal_engine.pose import generate_pose_filter_uniform_from_dict, pose_key
-import unreal_engine.random_cubemap
+from unreal_engine.random_background import RandomBackground
 
-PATH_MAIN = "/media/theo/Backup/data/"
+NUM_ANIMATION = 10
+GAP_ANIMATION = 30
+PATH_MAIN = "/media/theo/Storage/data/"
 metahuman = MetaHuman(MetaHumanAssets.ada)
 # all_backgrounds = load_all_backgrounds()
+all_random_backgrounds = []
+# generate random background
+with unreal.ScopedSlowTask(NUM_ANIMATION, "Generate backgrounds") as slow_task:
+   slow_task.make_dialog(can_cancel=True)
+   for k in range(NUM_ANIMATION):
+        slow_task.enter_progress_frame(work=1.0, desc=f'Generate backgrounds {k}/{NUM_ANIMATION}')
+        if slow_task.should_cancel():
+            break
+        background = RandomBackground.random()
+        all_random_backgrounds.append(background)
 
 for iteration in range(1):
-    NUM_ANIMATION = 100
-    GAP_ANIMATION = 30
-
     keys_agregation = [{"frame": t, "camera": {}, "metahuman": {}} for t in range((NUM_ANIMATION-1)*(GAP_ANIMATION+1) + 1)]
 
     # Initialize level sequence
@@ -44,10 +53,14 @@ for iteration in range(1):
     level.add_actor(camera)
     level.add_actor(light)
     level.add_actor(metahuman)
-    
+    for background in all_random_backgrounds:
+        level.add_actor(background)
+        background.add_key_visibility(0, False)
+
     light.add_key_random(0, offset=[0., 0., 180.])
 
     key_camera = camera.add_key_random(0, distance=40, offset=[0., 0., 143.])
+    idx_background = 0
 
     # Generate animation
     with unreal.ScopedSlowTask(NUM_ANIMATION, "Generate Animation") as slow_task:
@@ -55,12 +68,22 @@ for iteration in range(1):
         key_metahuman_prec = None
         keys_camera_prec = None
         for k in range(NUM_ANIMATION):
+            
             slow_task.enter_progress_frame(work=1.0, desc=f'Generate Animation {k}/{NUM_ANIMATION}')
             if slow_task.should_cancel():
                 break
+            
             frame_time = k*(GAP_ANIMATION + 1)
+
+            if idx_background >= len(all_random_backgrounds):
+                idx_background = 0
+            all_random_backgrounds[idx_background].add_key_visibility(frame_time, True)
+            if idx_background > 0:
+                all_random_backgrounds[idx_background-1].add_key_visibility(frame_time, False)
+            idx_background += 1
+
             key_metahuman = generate_pose_filter_uniform_from_dict(pose_key)
-            metahuman.add_key(key_metahuman, frame_time)
+            metahuman.add_key(frame_time, key_metahuman)
             key_camera = camera.add_key_random(frame_time, distance=40, offset=[0., 0., 143.])
             light.add_key_random(frame_time)
             if key_metahuman_prec:

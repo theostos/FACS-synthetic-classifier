@@ -14,7 +14,7 @@ def spherical_coordinates(r, phi, theta):
     z = r * cos(phi)
     return([x, y, z])
 
-def add_key_transform(binding, loc, rot, t):
+def add_key_transform(binding, t, loc, rot):
     """
     channels[0], channels[1], channels[2] = pos(x,y,z)
     channels[3], channels[4], channels[5] = rot(x,y,z)
@@ -24,8 +24,10 @@ def add_key_transform(binding, loc, rot, t):
     transform_section = transform_track.get_sections()[0]
     channels = transform_section.get_all_channels()
     for i in range(3):
-        channels[i].add_key(frame, loc[i])
-        channels[i + 3].add_key(frame, rot[i])
+        if loc:
+            channels[i].add_key(frame, loc[i])
+        if rot:
+            channels[i + 3].add_key(frame, rot[i])
 
 def prepare_editor():
     import unreal_engine.background as background
@@ -34,14 +36,14 @@ def prepare_editor():
     import unreal_engine.light as light
     import unreal_engine.metahuman as metahuman
     import unreal_engine.utils as utils
-    import unreal_engine.random_cubemap as random_cubemap
+    import unreal_engine.random_background as random_background
     reload(background)
     reload(camera)
     reload(level)
     reload(light)
     reload(metahuman)
     reload(utils)
-    reload(random_cubemap)
+    reload(random_background)
 
 def linear_interp_keys(old_keys, new_keys, gap_num):
     interpolation_virtual = lambda y0, y1, t: (1-t/(gap_num+1))*y0 + t/(gap_num+1)*y1

@@ -1,0 +1,54 @@
+{
+    "CTRL_R_ear_up": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_nose": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": -1.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_R_eye_blink": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_nose_wrinkleUpper": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_eye_squintInner": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_eye_cheekRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_lateral": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_down": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_raiseIn": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_raiseOut": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    }
+}

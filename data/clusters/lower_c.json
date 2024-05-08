@@ -1,0 +1,36 @@
+{
+    "CTRL_C_jaw": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": 0.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_C_jaw_openExtreme": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_jaw_fwdBack": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_mouth": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": -1.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_C_mouth_stickyD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_mouth_stickyU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    }
+}

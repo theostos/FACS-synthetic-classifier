@@ -1,0 +1,21 @@
+cubemap_list:
+  - /HDRIBackdrop/Textures/approaching_storm_4k.approaching_storm_4k
+  - /HDRIBackdrop/Textures/autumn_hockey_4k.autumn_hockey_4k
+  - /HDRIBackdrop/Textures/circus_maximus_2_4k.circus_maximus_2_4k
+  - /Engine/EditorMaterials/AssetViewer/EpicQuadPanorama_CC+EV1.EpicQuadPanorama_CC+EV1
+  - /Engine/EditorMaterials/AssetViewer/T_ClearSky.T_ClearSky
+  - /Engine/Engine_MI_Shaders/T_Cubemap_01.T_Cubemap_01
+  - /Engine/EngineMaterials/DefaultCubemap.DefaultCubemap
+  - /Engine/EngineResources/DefaultTextureCube.DefaultTextureCube
+  - /Engine/EngineResources/DefaultTextureCube_Low.DefaultTextureCube
+  - /Engine/EngineResources/GrayDarkTextureCube.GrayDarkTextureCube
+  - /Engine/EngineResources/GrayLightTextureCube.GrayLightTextureCube
+  - /Engine/EngineResources/GrayTextureCube.GrayTextureCube
+  - /Engine/MapTemplates/daylight.daylight
+  - /Engine/MapTemplates/Sky/DaylightAmbientCubemap.DaylightAmbientCubemap
+  - /Engine/MapTemplates/Sky/Desert_Outer_HDR.Desert_Outer_HDR
+  - /Engine/MapTemplates/Sky/SunsetAmbientCubemap.SunsetAmbientCubemap
+  - /HDRIBackdrop/Textures/misty_pines_4k.misty_pines_4k
+  - /HDRIBackdrop/Textures/ostrich_road_4k.ostrich_road_4k
+  - /Niagara/DefaultAssets/ScenePreviewCube.ScenePreviewCube
+asset_path: '/HDRIBackdrop/Blueprints/HDRIBackdrop.HDRIBackdrop'

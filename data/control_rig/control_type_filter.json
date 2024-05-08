@@ -1,0 +1,480 @@
+{
+    "CTRL_C_jaw": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": 0.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_R_jaw_clench": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_jaw_openExtreme": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_jaw_fwdBack": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_jaw_clench": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_jaw_chinCompress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_jaw_ChinRaiseD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_jaw_ChinRaiseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_jaw_ChinRaiseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_jaw_chinCompress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_jaw_ChinRaiseD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipsBlow": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipsPressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsTogetherU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsTogetherD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipSticky": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipSticky": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipsTogetherU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsPressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsBlow": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipsTogetherD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_mouth": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": -1.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_L_mouth_upperLipRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_sharpCornerPull": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_cornerPull": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_dimple": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_cornerDepress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_stretch": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lowerLipDepress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lowerLipDepress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_stretch": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_towardsD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_stickyInnerU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_funnelU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_stickyOuterD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_mouth_stickyD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_towardsU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_stickyInnerD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipBiteD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_funnelD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_stickyOuterU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_C_mouth_stickyU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_tightenD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_pressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_tightenD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_stickyInnerU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_funnelD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_suckBlow": {
+        "type": "float",
+        "min": -1.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_tightenU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_tightenU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_pressD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_funnelU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_towardsU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_stickyOuterD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_purseD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipBiteU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_pressD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_pressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_purseD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipBiteU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_suckBlow": {
+        "type": "float",
+        "min": -1.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_purseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_towardsD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_stickyInnerD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipBiteD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_purseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_stickyOuterU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_cornerDepress": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_upperLipRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_dimple": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_sharpCornerPull": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_cornerPull": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_ear_up": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_ear_up": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_nose": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": -1.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_L_nose": {
+        "type": "vec2",
+        "min_x": -1.0,
+        "min_y": -1.0,
+        "max_x": 1.0,
+        "max_y": 1.0
+    },
+    "CTRL_L_eye_blink": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_eye_blink": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_eye_cheekRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_eye_squintInner": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_nose_wrinkleUpper": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_nose_wrinkleUpper": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_eye_squintInner": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_eye_cheekRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_lateral": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_brow_lateral": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_down": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_brow_down": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_brow_raiseOut": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_brow_raiseIn": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_raiseIn": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_brow_raiseOut": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_R_mouth_lipsPressD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsPressD": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    }
+}

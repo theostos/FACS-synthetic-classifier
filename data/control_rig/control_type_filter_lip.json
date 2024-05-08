@@ -1,0 +1,52 @@
+{
+    "CTRL_L_mouth_lipBiteU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_towardsU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_purseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_funnelU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsPressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_tightenU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_lipsTogetherU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_upperLipRaise": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_mouth_pressU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    },
+    "CTRL_L_jaw_ChinRaiseU": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0
+    }
+}

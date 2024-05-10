@@ -5,9 +5,9 @@ import os
 from unreal_engine.key import key_uniform, key_zero
 
 abs_path = os.environ["abs_path"]
-PATH_EMOTION = abs_path + 'data/pose/pose_emotion.json'
-PATH_VISEME = abs_path + 'data/pose/pose_viseme.json'
-PATH_CLUSTERS = abs_path + 'data/clusters/'
+PATH_EMOTION = abs_path + 'data/ue_editor/pose/pose_emotion.json'
+PATH_VISEME = abs_path + 'data/ue_editor/pose/pose_viseme.json'
+PATH_CLUSTERS = abs_path + 'data/ue_editor/clusters/'
 
 lower_c_path = os.path.join(PATH_CLUSTERS, 'lower_c.json')
 lower_l_path = os.path.join(PATH_CLUSTERS, 'lower_l.json')

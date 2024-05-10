@@ -5,7 +5,7 @@ import os
 abs_path = os.environ["abs_path"]
 
 background_config_path = os.path.join(abs_path, 'config/background.yaml')
-control_json_path = os.path.join(abs_path, 'data/control_rig/control_type.json')
+control_json_path = os.path.join(abs_path, 'data/ue_editor/control_rig/control_type.json')
 
 background_config = {}
 control_json = {}

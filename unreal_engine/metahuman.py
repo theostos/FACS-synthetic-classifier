@@ -19,7 +19,7 @@ class MetaHuman:
         self.asset = unreal.load_asset(path_asset)
         self.actor = unreal.EditorLevelLibrary.spawn_actor_from_object(self.asset, [0., 0., 0.])
         abs_path = os.environ["abs_path"]
-        with open(abs_path + 'data/control_rig/control_type.json', 'r') as file:
+        with open(abs_path + 'data/ue_editor/control_rig/control_type.json', 'r') as file:
             self.control_json = json.load(file)
 
     def add_to_level_sequencer(self, level_sequencer):

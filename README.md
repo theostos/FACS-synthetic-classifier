@@ -63,8 +63,6 @@ From this, an expression of sadness could be identified by the combination of AU
 
 This system also includes an intensity scoring ranging from A (trace) to E (maximum)
 
-FACS system has many qualities: it is interpretable while assuring reproducibility of its coding by trained expert coder.
-
 The FACS system is valued for its interpretability and the reproducibility of its codings by trained experts. Research such as [[1](#1)] demonstrates its effectiveness in evaluating emotion beyond discrete emotion classification using the arousal-valence model [[13](#13)].
 Authors in [[3](#3)] contrasts the limitations of self-reporting emotions with studies focusing solely on AUs.
 Study [[9](#9)] explores emotion detection using a graph-based approach, and [[20](#20)] illustrates how AUs can be utilized to detect both micro and macro expressions in video content.
@@ -151,7 +149,7 @@ We then create a sequence of facial expressions by doing linear interpolations b
 
 <center id="figure_data_gen">
 
-|![image](img/seq_face_0.png)|![image](img/seq_face_1.png)|![image](img/seq_face_2.png)|![image](img/seq_face_3.png)|
+|![image](img/step_1.gif)|![image](img/step_2.gif)|![image](img/step_3.gif)|![image](img/step_4.gif)|
 |:--:|:--:|:--:|:--:|
 |**Fig. 4.a.** Sequence of facial expressions|**Fig. 4.b.** Camera augmentation|**Fig. 4.c.** Light augmentation|**Fig. 4.d.** Background variation|
 
@@ -166,9 +164,9 @@ As mentionned in a [previous section](#metahuman), our goal is to maximize the d
 
 <center>
 
-|![image](img/mh_blend.png)|
-|:--:| 
-| **Fig. 5.** Blending of MetaHumans |
+|![image](img/choose_mh.gif)|![image](img/blend_mh.gif)|
+|:--:| :--:| 
+|**Fig. 5.a** Randomly choose MetaHumans before blending | **Fig. 5.b** Blending of MetaHumans |
 
 </center>
 
@@ -180,7 +178,7 @@ We compare this generated set with the set presented in [[18](#18)] in [figure 5
 
 <center id="mh_panorama">
 
-|![image](img/mh_panorama.png)|![image](img/fake_it_panorama.png)|
+|![image](img/mh_panorama.png)|![image](img/fake_panorama.png)|
 |:--:|:--:|
 | **Fig. 6.a.** Panorama of generated MetaHumans | **Fig. 6.b.** Panorama from [[18](#18)] |
 

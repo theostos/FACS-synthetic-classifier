@@ -6,7 +6,7 @@ from math import pi, cos, sin
 import yaml
 import cv2 as cv
 
-import utils.utils as utils
+import mh_bot.utils as utils
 
 def load_folder(path):
     nav_dict = {}
@@ -46,7 +46,7 @@ def _load_generic(path, menu):
 
 class Navigation():
 
-    def __init__(self, path='data/'):
+    def __init__(self, path='data/mh_bot/'):
         self.nav_dict = {}
         for folder in os.listdir(path):
             path_folder = os.path.join(path, folder)
@@ -248,7 +248,7 @@ class Navigation():
         time.sleep(3)
 
         for (x, y) in self.submenu["keypoints"]["blend"].values():
-            dist_r = 150 + 100*random.uniform(0, 1)
+            dist_r = 250 + 100*random.uniform(0, 1)
             utils.moveTo(x, y, 0.5, scale=self.scale)
             angle = random.random() * 2 * pi
             delta_x = dist_r * cos(angle)

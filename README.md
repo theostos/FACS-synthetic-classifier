@@ -7,11 +7,11 @@ This repository aims to experiment with and prototype **facial expression-aware*
 
 LLMs are increasingly used in projects involving **direct user interaction**, typically through chatbots, and sometimes augmented with Automatic Speech Recognition (ASR), Text-to-Speech (TTS), and audio-to-video models.
 
-However, this underlying LLM often **lack access to crucial user inputs** such as voice and facial expressions, leaving it unaware of important aspects of user input [[16](#16)].
+However, these underlying models often **lack access to crucial user inputs** such as voice and facial expressions, leaving them unaware of important aspects of user input [[16](#16)].
 Similar closely related questions also arise in the field of Human-Robot Interaction (HRI) [[19](#19)].
 
 Additionally, these inputs contain key information that could enable the LLM to handle **interruptions**, **be interrupted**, or **detect turn-taking signals** [[14](#14)].
-Furthermore, if the modeled agent needs to express emotion, while maintaining low-latency, it could very useful to directly implement some sort of TTS and emotion directly as outputs of the model.
+Furthermore, if the modeled agent needs to express emotion, while maintaining low-latency, it could be very useful to directly implement some sort of TTS and emotion directly as outputs of the model.
 
 The main goal of this repository is to experiment with the specific challenge of making an LLM both **aware of facial expressions** as input and capable of **facial expressiveness** as output.
 
@@ -19,9 +19,16 @@ The very first step in this experimentation is to find a way to represent and **
 The second step is to develop a method to automatically and reliably **extract** this information from real-world data. \
 The final step is to **integrate** this additional data into an LLM.
 
+More precisely, this repository aims to leverage Metahumans and their **Facial Action Coding System** (**FACS**) based rig to generate a synthetic dataset of diverse facial expressions across various avatars to train a model to recognize them. \
+Prior works [[1](#1), [8](#8)] leveraged real-world datasets annotated by expert coders. \
+More recent work [[22](#22)] proposed augmenting real-world data with synthetic data by retargeting existing datasets onto 3D models. \
+Inspired by [[17](#17), [18](#18)], we aim to rely completely on synthetic data, leveraging rig data to obtain continuous and highly accurate measurements of facial states.
+
 ### Related works
 
 Facial expressions have been widely studied in the context of deep learning, one of its application is sentiment analysis based on facial expression estimation [[1](#1), [8](#8)].
+
+<span style="color:red">**TO DO: add more references to Facial Action Unit Detection**</span>.
 
 A significant distinction exists between **posed facial expressions**, which are more exaggerated and easier to detect, and **spontaneous facial expressions** (associated with real data), which are subtler and more difficult to detect.
 
@@ -35,6 +42,8 @@ These papers demonstrate the effectiveness of synthetic data in face-related com
 
 - [[7](#7)] describes a method of training a CNN for video-based facial performance capture tailored to one specific actor, using 5-10 minutes of captured footage.
 While this method is actor-specific, it is **highly accurate** and **industry-oriented**.
+
+Finally, the FAtiMA Toolkit [[9](#9)] enables the development of socio-emotional agents capable of interpreting and generating emotionally aware responses, enhancing interactions in application
 
 ### Representation of facial expression
 
@@ -69,6 +78,8 @@ Study [[8](#8)] explores emotion detection using a **graph-based approach**, and
 
 Several high-quality datasets, annotated by **FACS** expert coders, are available [[10](#10), [11](#11), [21](#21)].
 These datasets provide a robust foundation for testing our models.
+
+Recent work [[22](#22)] proposed augmenting these real-world datasets by generating synthetic data through retargeting existing data onto 3D models.
 
 As shown in [[17](#17), [18](#18)], synthetic data can also be sufficiently effective for face-related tasks in computer vision.
 We plan to leverage game engine (namely Unreal Engine), which offers **realistic rendering**, **controllability**, and access to pre-designed characters, to generate such synthetic datasets.
@@ -105,14 +116,14 @@ For this purpose, we have to scrape the MetaHuman Creator tool to expand our cha
 
 Following [[17](#17)], we train a CNN (namely a ResNet). This network will take as input the **3D renders** of our MetaHuman set and output the values of the **controller rig** (scalar values).
 The use of **Gaussian negative log likelihood** (**GNLL**) is recommended by authors of [[17](#17)] to manage the uncertainty of measurements.
-Even if our initial dataset we will not feature occluded parts, **GNNL** seems to be an interesting way to manage the varying sensitivities of rig controllers.
+Even if our initial dataset will not feature occluded parts, **GNLL** seems to be an interesting way to manage the varying sensitivities of rig controllers.
 
 Subsequently, we can test the model using **real world data** from the [datasets section](#datasets).
 If the results are *acceptable* (human evaluation), we could try to apply more conventional machine learning techniques to classify **AUs** based on rig controllers data.
 
 Assuming these experiments are successful, we plan to experiment with the integration of these data in LLM.
 First, we could try to leverage few-show abilities of LLMs (with integration of **AU**).
-Then trying to finetune an LLM by adding some face-expression encoding (with integration of **AU** or **rig data**) to the token (**time-**)associated, making it **face-expression aware**, and also training a second LM head to predict **face-expression** associated to the next token.
+Then try to finetune an LLM by adding some face-expression encoding (with integration of **AU** or **rig data**) to the token (**time-**)associated, making it **face-expression aware**, and also train a second LM head to predict **face-expression** associated to the next token.
 
 <center>
 
@@ -202,7 +213,8 @@ This model is trained to predict each controller rig value, but also the uncerta
 
 During training, we apply the **GNLL** loss to handle the uncertainty of predictions.
 
-**ADD LEARNING CURVE + VALIDATION**
+<span style="color:red">**TO DO: ADD LEARNING CURVE + VALIDATION**</span>.
+
 ## Results (WIP)
 
 ### FACS classifier
@@ -214,6 +226,8 @@ In this subsection we show results of the model applied to [real data](#datasets
 #### In-context learning
 
 In this subsection we prompt an LLM with **AUs** descriptions, and ask it to generate answers augmented with **AUs**.
+
+<span style="color:red">**TO DO: CONNECTION WITH [[9](#9)]**</span>.
 
 #### Fine-tuned LLM
 
@@ -400,3 +414,15 @@ Girard, J. M.:
 BP4D-Spontaneous: A high-resolution spontaneous 3D dynamic facial expression database.
 In Image and Vision Computing, 2014
 [(link)](https://www.researchgate.net/publication/264348304_BP4D-Spontaneous_A_high-resolution_spontaneous_3D_dynamic_facial_expression_database)
+
+[<a id="22">22</a>]
+Lu, L.,
+Yin, Y.,
+Gu,Y.,
+Wu, Y.,
+Prasad, P.,
+Zhao, Y.,
+Soleymani, M.:
+Leveraging Synthetic Data for Generalizable and
+Fair Facial Action Unit Detection
+[(pdf)](https://arxiv.org/pdf/2403.10737)

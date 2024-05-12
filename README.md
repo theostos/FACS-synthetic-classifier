@@ -8,7 +8,7 @@ This repository aims to experiment with and prototype facial expression-aware La
 LLMs are increasingly used in projects involving direct user interaction, typically through chatbots, and sometimes augmented with Automatic Speech Recognition (ASR), Text-to-Speech (TTS), and audio-to-video models.
 
 However, these models often lack access to crucial user inputs such as voice and facial expressions, leaving them unaware of important aspects of user input [[16](#16)].
-Similar questions also arise in the field of Human-Robot Interaction (HRI) and are closely related to those questions [[19](#19)]
+Similar closely related questions also arise in the field of Human-Robot Interaction (HRI) [[19](#19)].
 
 Additionally, these inputs contain key information that could enable the LLM to handle interruptions, be interrupted, or detect turn-taking signals [[14](#14)].
 Furthermore, if the modeled agent needs to express emotion, while maintaining low-latency, it could very useful to directly implement some sort of TTS and sentiment analysis directly as outputs of the model.
@@ -55,13 +55,12 @@ These AUs are related to muscle activity.
 Examples of such AUs include:
 | Action units | FACS name |
 | -------- | ------- |
-| AU1 | Inner brow raiser |
-| AU4 | Brow lowerer |
-| AU15 | Lip corner depressor |
+| AU6 | Cheek raiser |
+| AU12 | Lip corner puller |
 
-From this, an expression of sadness could be identified by the combination of AU1 + AU4 + AU15.
+From this, an expression of sadness could be identified by the combination of AU6 + AU12.
 
-This system also includes an intensity scoring ranging from A (trace) to E (maximum)
+This system also includes an intensity scoring ranging from A (trace) to E (maximum).
 
 The FACS system is valued for its interpretability and the reproducibility of its codings by trained experts. Research such as [[1](#1)] demonstrates its effectiveness in evaluating emotion beyond discrete emotion classification using the arousal-valence model [[13](#13)].
 Authors in [[3](#3)] contrasts the limitations of self-reporting emotions with studies focusing solely on AUs.
@@ -87,7 +86,7 @@ According to [[13]](#13) the facial rig of MetaHuman is designed with the FACS s
 
 <center>
 
-|![image](img/metahuman.png)|
+|![image](img/mh_rig.png)|
 |:--:| 
 | **Fig. 2.** Rig controllers of MetaHuman |
 
@@ -112,7 +111,7 @@ Subsequently, we can test the model using real data from the [datasets section](
 If the results are *acceptable* (human evaluation), we could try to apply more conventional machine learning techniques to classify **AUs** based on rig controllers data.
 
 Assuming these experiments are successful, we plan to experiment with the integration of these data in LLM.
-First, we could leverage few-show abilities of LLMs.
+First, we could try to leverage few-show abilities of LLMs.
 Then trying to finetune an LLM by adding some face-expression encoding to the token (time-)associated, making it face-expression aware, and also training a second LM head to predict face-expression associated to the next token.
 
 <center>
@@ -135,8 +134,8 @@ The primary goal of this section is to reproduce the describe steps in the previ
 
 To take control of the Unreal Engine editor (5.4), we use [Unreal Engine python API](https://docs.unrealengine.com/5.4/en-US/PythonAPI/).
 Inspired by ideas from [[18](#18)], we implement three types of augmentation :
-- **Camera augmentation**: Adjusting variable angles and focal distances, see [figure 4.b](#figure_data_gen).
-- **Light augmentation:** Modifying light distance, angles, and color, see [figure 4.c](#figure_data_gen).
+- **Light augmentation:** Modifying light distance, angles, and color, see [figure 4.b](#figure_data_gen).
+- **Camera augmentation**: Adjusting variable angles and focal distances, see [figure 4.c](#figure_data_gen).
 - **Background variation:** : Implementing randomly generated backgrounds, see[figure 4.d](#figure_data_gen).
 
 Additionally, we generate facial expressions, by leveraging rig controllers.
@@ -149,9 +148,9 @@ We then create a sequence of facial expressions by doing linear interpolations b
 
 <center id="figure_data_gen">
 
-|![image](img/step_1.gif)|![image](img/step_2.gif)|![image](img/step_3.gif)|![image](img/step_4.gif)|
+|![image](img/gen_step_1.gif)|![image](img/gen_step_2.gif)|![image](img/gen_step_3.gif)|![image](img/gen_step_4.gif)|
 |:--:|:--:|:--:|:--:|
-|**Fig. 4.a.** Sequence of facial expressions|**Fig. 4.b.** Camera augmentation|**Fig. 4.c.** Light augmentation|**Fig. 4.d.** Background variation|
+|**Fig. 4.a.** Sequence of facial expressions|**Fig. 4.b.** Light augmentation|**Fig. 4.c.** Camera augmentation|**Fig. 4.d.** Background variation|
 
 </center>
 
@@ -164,7 +163,7 @@ As mentionned in a [previous section](#metahuman), our goal is to maximize the d
 
 <center>
 
-|![image](img/choose_mh.gif)|![image](img/blend_mh.gif)|
+|![image](img/mh_choose.gif)|![image](img/mh_blend.gif)|
 |:--:| :--:| 
 |**Fig. 5.a** Randomly choose MetaHumans before blending | **Fig. 5.b** Blending of MetaHumans |
 
@@ -178,7 +177,7 @@ We compare this generated set with the set presented in [[18](#18)] in [figure 5
 
 <center id="mh_panorama">
 
-|![image](img/mh_panorama.png)|![image](img/fake_panorama.png)|
+|![image](img/mh_panorama.png)|![image](img/wbhdcs_panorama.png)|
 |:--:|:--:|
 | **Fig. 6.a.** Panorama of generated MetaHumans | **Fig. 6.b.** Panorama from [[18](#18)] |
 
@@ -195,7 +194,7 @@ This model is trained to predict each controller rig value, but also the uncerta
 
 <center id="training">
 
-|![image](img/training.png)|
+|![image](img/cnn.png)|
 |:--:|
 | **Fig. 5.** Given an image we predict controller rig value and its uncertainty ||
 

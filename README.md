@@ -3,46 +3,45 @@ Deep learning project to integrate facial expression into large language models.
 
 ## Introduction
 
-This repository aims to experiment with and prototype facial expression-aware Large Language Models (LLMs).
+This repository aims to experiment with and prototype **facial expression-aware** Large Language Models (LLMs).
 
-LLMs are increasingly used in projects involving direct user interaction, typically through chatbots, and sometimes augmented with Automatic Speech Recognition (ASR), Text-to-Speech (TTS), and audio-to-video models.
+LLMs are increasingly used in projects involving **direct user interaction**, typically through chatbots, and sometimes augmented with Automatic Speech Recognition (ASR), Text-to-Speech (TTS), and audio-to-video models.
 
-However, these models often lack access to crucial user inputs such as voice and facial expressions, leaving them unaware of important aspects of user input [[16](#16)].
+However, these underlying models often **lack access to crucial user inputs** such as voice and facial expressions, leaving them unaware of important aspects of user input [[16](#16)].
 Similar closely related questions also arise in the field of Human-Robot Interaction (HRI) [[19](#19)].
 
-Additionally, these inputs contain key information that could enable the LLM to handle interruptions, be interrupted, or detect turn-taking signals [[14](#14)].
-Furthermore, if the modeled agent needs to express emotion, while maintaining low-latency, it could very useful to directly implement some sort of TTS and sentiment analysis directly as outputs of the model.
+Additionally, these inputs contain key information that could enable the LLM to handle **interruptions**, **be interrupted**, or **detect turn-taking signals** [[14](#14)].
+Furthermore, if the modeled agent needs to express emotion, while maintaining low-latency, it could very useful to directly implement some sort of TTS and emotion directly as outputs of the model.
 
-The main goal of this repository is to experiment with the specific challenge of making an LLM both aware of facial expressions as input and capable of facial expressiveness as output.
+The main goal of this repository is to experiment with the specific challenge of making an LLM both **aware of facial expressions** as input and capable of **facial expressiveness** as output.
 
-
-The very first step in this experimentation is to find a way to represent and tokenize facial expressions.
-The second step is to develop a method to automatically and reliably extract this information from real-world data in hopes of fine-tuning an LLM.
-
-
+The very first step in this experimentation is to find a way to represent and **tokenize facial expressions**. \
+The second step is to develop a method to automatically and reliably **extract** this information from real-world data. \
+The final step is to **integrate** this additional data into an LLM.
 
 ### Related works
 
-Facial expressions have been widely studied in the context of deep learning, one of its application is sentiment analysis based on facial expression estimation [[1](#1), [9](#9)].
+Facial expressions have been widely studied in the context of deep learning, one of its application is sentiment analysis based on facial expression estimation [[1](#1), [8](#8)].
 
-A significant distinction exists between posed facial expressions, which are more exaggerated and easier to detect, and spontaneous expressions (associated to real data), which are subtler and more difficult to detect.
+A significant distinction exists between **posed facial expressions**, which are more exaggerated and easier to detect, and **spontaneous facial expressions** (associated with real data), which are subtler and more difficult to detect.
 
-Facial expression transfer involves moving expressions from an actor in a source video to another actor in a target video, which relates to the problem of expressiveness [[15](#15)].
+Facial expressions have also been studied in the context of **transfer**, which involves moving expressions from an actor in a source video to another actor in a target video [[15](#15)].
+This is closely related to the challenge of achieving **expressiveness**.
 
-Furthermore, we reference two different papers on 3D face reconstruction:
+Furthermore, we reference two different papers on **3D face reconstruction**:
 
-[[17](#17), [18](#18)] discuss leveraging synthetic data to estimate dense landmark localization and face part parsing.
+- [[17](#17), [18](#18)] discuss **leveraging synthetic data** to estimate dense **landmark localization** and **face part parsing**.
 These papers demonstrate the effectiveness of synthetic data in face-related computer vision tasks.
 
-[[7](#7)] describes a method of training a CNN for video-based facial performance capture tailored to one specific actor, using 5-10 minutes of captured footage.
-While this method is actor-specific, it is highly accurate and industry-oriented.
+- [[7](#7)] describes a method of training a CNN for video-based facial performance capture tailored to one specific actor, using 5-10 minutes of captured footage.
+While this method is actor-specific, it is **highly accurate** and **industry-oriented**.
 
 ### Representation of facial expression
 
-A natural question is wether there exists an interpretable representation space that bridges the gap between the visual space of images and the discrete space of emotions.
+A natural question is whether there exists an **interpretable representation space** that bridges the gap between the visual space of images and the discrete space of emotions.
 
-Following priori works [[1](#1), [3](#3), [9](#9), [20](#20)], we utilize the Facial Action Coding System (FACS) [[4](#4), [5](#5), [6](#6)] to deconstruct facial expressions into interpretable sub-element calls "action units" (AUs).
-These AUs are related to muscle activity.
+Following priori works [[1](#1), [3](#3), [8](#8), [20](#20)], we utilize the **Facial Action Coding System** (**FACS**) [[4](#4), [5](#5), [6](#6)] to deconstruct facial expressions into interpretable sub-element calls "**action units**" (**AU**).
+These **AU**s are related to muscle activity.
 
 <center>
 
@@ -52,37 +51,38 @@ These AUs are related to muscle activity.
 
 </center>
 
-Examples of such AUs include:
-| Action units | FACS name |
+Examples of such **AU**s include:
+| Action units | **FACS** name |
 | -------- | ------- |
-| AU6 | Cheek raiser |
-| AU12 | Lip corner puller |
+| **AU6** | Cheek raiser |
+| **AU12** | Lip corner puller |
 
-From this, an expression of sadness could be identified by the combination of AU6 + AU12.
+From this, an expression of happiness could be identified by the combination of **AU6** + **AU12**.
 
 This system also includes an intensity scoring ranging from A (trace) to E (maximum).
 
-The FACS system is valued for its interpretability and the reproducibility of its codings by trained experts. Research such as [[1](#1)] demonstrates its effectiveness in evaluating emotion beyond discrete emotion classification using the arousal-valence model [[13](#13)].
-Authors in [[3](#3)] contrasts the limitations of self-reporting emotions with studies focusing solely on AUs.
-Study [[9](#9)] explores emotion detection using a graph-based approach, and [[20](#20)] illustrates how AUs can be utilized to detect both micro and macro expressions in video content.
+The **FACS** system is valued for its interpretability and the reproducibility of its codings by trained experts. Research such as [[1](#1)] demonstrates its effectiveness in evaluating emotion beyond **discrete** emotion classification using the **arousal-valence model** [[13](#13)].
+Authors in [[3](#3)] contrasts the limitations of self-reporting emotions with studies focusing solely on **AUs**.
+Study [[8](#8)] explores emotion detection using a **graph-based approach**, and [[20](#20)] illustrates how **AUs** can be utilized to detect both **micro** and **macro expressions** in video content.
 
 ### Datasets
 
-Several high-quality datasets, annotated by FACS expert coders, are available [[10](#10), [11](#11), [21](#21)].
+Several high-quality datasets, annotated by **FACS** expert coders, are available [[10](#10), [11](#11), [21](#21)].
 These datasets provide a robust foundation for testing our models.
 
 As shown in [[17](#17), [18](#18)], synthetic data can also be sufficiently effective for face-related tasks in computer vision.
-We plan to leverage game engine (namely Unreal Engine), which offers realistic rendering, controllability, and access to pre-designed characters, to generate such synthetic datasets.
+We plan to leverage game engine (namely Unreal Engine), which offers **realistic rendering**, **controllability**, and access to pre-designed characters, to generate such synthetic datasets.
+Our hope is that the high **controllability** and **reliability** of synthetic data could help us improve the performance of facial expressions recognition.
 
 ### MetaHuman
 
 One option for creating realistic avatar is the MetaHuman creator.
 This tool, fully integrated with Unreal Engine, allows an easy design of characters.
 
-Two important questions arise: Do we have full control over facial expressions? And, is the tool versatile enough to create a diverse set of characters to trained a CNN on ?
+Two important questions arise: Do we have full control over facial expressions? And, is the tool versatile enough to create a diverse set of characters to train a CNN on ?
 
 The first question concerns the control of facial expressions.
-According to [[13]](#13) the facial rig of MetaHuman is designed with the FACS system in mind, making it highly suitable for our purposes.
+According to [[13]](#13) the facial rig of MetaHuman is designed with the **FACS** system in mind, making it highly suitable for our purposes.
 
 <center>
 
@@ -94,7 +94,7 @@ According to [[13]](#13) the facial rig of MetaHuman is designed with the FACS s
 
 The second question addresses diversity. The tool offers 66 presets of various characters, along with an option to blend them, which potentially allows for significant augmentation of the MetaHuman set.
 
-If we observe some issue with generalization of the trained model, we could leverage **Mesh to MetaHuman** with some 3D morphable face models following [[2](#2), [18](#18)] trained from a diverse set of 3D scans.
+If we observe some issue with generalization of the trained model, we could leverage **Mesh to MetaHuman** with some **3D morphable face models** following [[2](#2), [18](#18)] trained from a diverse set of **3D scans**.
 
 ### Steps of experimentation
 
@@ -103,16 +103,16 @@ First we aim to generate a dataset where, starting with a MetaHuman, we render i
 Then, given this recipe, we use it to generate multiple renders of different MetaHuman.
 For this purpose, we have to scrape the MetaHuman Creator tool to expand our character set.
 
-Following [[17](#17)], we train a CNN (namely a ResNet). This network will take as input the 3D renders of our MetaHuman set and output the values of the controller rig (scalar values).
-The use of Gaussian negative log likelihood (GNLL) is recommended by authors of [[17](#17)] to manage the uncertainty of measurements.
-Even if our initial dataset we will not feature occluded parts, GNNL seems to be an interesting way to manage the varying sensitivities of rig controllers.
+Following [[17](#17)], we train a CNN (namely a ResNet). This network will take as input the **3D renders** of our MetaHuman set and output the values of the **controller rig** (scalar values).
+The use of **Gaussian negative log likelihood** (**GNLL**) is recommended by authors of [[17](#17)] to manage the uncertainty of measurements.
+Even if our initial dataset we will not feature occluded parts, **GNNL** seems to be an interesting way to manage the varying sensitivities of rig controllers.
 
-Subsequently, we can test the model using real data from the [datasets section](#datasets).
+Subsequently, we can test the model using **real world data** from the [datasets section](#datasets).
 If the results are *acceptable* (human evaluation), we could try to apply more conventional machine learning techniques to classify **AUs** based on rig controllers data.
 
 Assuming these experiments are successful, we plan to experiment with the integration of these data in LLM.
-First, we could try to leverage few-show abilities of LLMs.
-Then trying to finetune an LLM by adding some face-expression encoding to the token (time-)associated, making it face-expression aware, and also training a second LM head to predict face-expression associated to the next token.
+First, we could try to leverage few-show abilities of LLMs (with integration of **AU**).
+Then trying to finetune an LLM by adding some face-expression encoding (with integration of **AU** or **rig data**) to the token (**time-**)associated, making it **face-expression aware**, and also training a second LM head to predict **face-expression** associated to the next token.
 
 <center>
 
@@ -159,13 +159,13 @@ We then create a sequence of facial expressions by doing linear interpolations b
 To scrape MetaHuman Creator, we need to create an interface between the website and python.
 Given that the website streams video from a remote computer hosting the software, we use [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/) and [OpenCV](https://docs.opencv.org/4.x/index.html) to navigate through it.
 
-As mentionned in a [previous section](#metahuman), our goal is to maximize the diversity of MetaHumans as diverse possible using features from the MetaHuman Creator. One crucial feature is the blending function, illustrated below.
+As mentionned in a [previous section](#metahuman), our goal is to maximize the **diversity** of MetaHumans as diverse possible using features from the MetaHuman Creator. One crucial feature is the blending function, illustrated below.
 
 <center>
 
 |![image](img/mh_choose.gif)|![image](img/mh_blend.gif)|
 |:--:| :--:| 
-|**Fig. 5.a** Randomly choose MetaHumans before blending | **Fig. 5.b** Blending of MetaHumans |
+|**Fig. 5.a.** Randomly choose MetaHumans before blending | **Fig. 5.b.** Blending of MetaHumans |
 
 </center>
 
@@ -187,7 +187,7 @@ If we observe some issues with the generalization of the trained model, we could
 
 ### Training a model (WIP)
 
-Now that we have a dataset of 3D renders paired with Rig controller states, our next step is to train a CNN on it.
+Now that we have a dataset of **3D renders** paired with **Rig controller states**, our next step is to train a CNN on it.
 
 Following [[17](#17)], we consider ResNet 101.
 This model is trained to predict each controller rig value, but also the uncertainty of its predictions (see [figure](#training) below).
@@ -200,7 +200,7 @@ This model is trained to predict each controller rig value, but also the uncerta
 
 </center>
 
-During training, we apply the Gaussian Negative Log Likelihood (GNLL) loss to handle the uncertainty of predictions.
+During training, we apply the **GNLL** loss to handle the uncertainty of predictions.
 
 **ADD LEARNING CURVE + VALIDATION**
 ## Results (WIP)
@@ -217,8 +217,8 @@ In this subsection we prompt an LLM with **AUs** descriptions, and ask it to gen
 
 #### Fine-tuned LLM
 
-In this subsection we fine-tune an LLM by adding some face-expression encoding to the associated token, making it face-expression aware.
-Additionally, we train a second LM head to predict the face-expression of the next token.
+In this subsection we fine-tune an LLM by adding some **face-expression encoding** to the (**time-**)associated token, making it **face-expression aware**.
+Additionally, we train a second LM head to predict the **face-expression** of the next token.
 
 ## References
 
@@ -266,10 +266,20 @@ Laine, S.,
 Karras, T.,
 Aila, T.:
 Production-Level Facial Performance Capture Using Deep Convolutional Neural Networks.
-In Symposium on Computer Animation 2017.
+In Symposium on Computer Animation, 2017.
 [(pdf)](https://research.nvidia.com/sites/default/files/publications/laine2017sca_paper_0.pdf)
 
 [<a id="8">8</a>]
+Luo, C.,
+Song, S.,
+Xie, W.,
+Shen, L.,
+Gunes, H.:
+Learning Multi-dimensional Edge Feature-based AU Relation Graph for Facial Action Unit Recognition.
+In Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence, 2022.
+[(link)](https://www.ijcai.org/proceedings/2022/0173.pdf)
+
+[<a id="9">9</a>]
 Mascarenhas, S.,
 Guimarães, M.,
 Prada, R.,
@@ -280,15 +290,6 @@ FAtiMA Toolkit: Toward an Accessible Tool for the
 Development of Socio-emotional Agents.
 In ACM Transactions on Interactive Intelligent Systems, 2022.
 [(pdf)](https://dl.acm.org/doi/pdf/10.1145/3510822)
-
-[<a id="9">9</a>]
-Masur, P. B. S.,
-Costa, W.,
-Figueredo, L. S.,
-Teichrieb, V.:
-Leveraging Previous Facial Action Units Knowledge for Emotion Recognition on Faces.
-In IEEE Latin American Conference on Computational Intelligence 2023.
-[(link)](https://arxiv.org/abs/2311.11980)
 
 [<a id="10">10</a>]
 Mavadati, M.,

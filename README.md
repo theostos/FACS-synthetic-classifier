@@ -7,7 +7,7 @@ This repository aims to experiment with and prototype **facial expression-aware*
 
 LLMs are increasingly used in projects involving **direct user interaction**, typically through chatbots, and sometimes augmented with Automatic Speech Recognition (ASR), Text-to-Speech (TTS), and audio-to-video models.
 
-However, this underlying LLM often **lack access to crucial user inputs** such as voice and facial expressions, leaving them unaware of important aspects of user input [[16](#16)].
+However, this underlying LLM often **lack access to crucial user inputs** such as voice and facial expressions, leaving it unaware of important aspects of user input [[16](#16)].
 Similar closely related questions also arise in the field of Human-Robot Interaction (HRI) [[19](#19)].
 
 Additionally, these inputs contain key information that could enable the LLM to handle **interruptions**, **be interrupted**, or **detect turn-taking signals** [[14](#14)].
